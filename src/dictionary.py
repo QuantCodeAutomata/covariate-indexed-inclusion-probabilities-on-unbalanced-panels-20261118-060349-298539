@@ -69,7 +69,7 @@ def rank_angle_dictionary(d: int, half_angle: bool = False):
     Section 7.1: theta_j = arccos(z_j) in [0, pi], features
     1, z_j/sqrt(d), sqrt(1-z_j^2)/sqrt(d) for 'arc' (cos/sin theta_j split),
     or cos((theta_j-theta_j')/2) style half-angle features for 'half'.
-    m = 2d + 1 in both cases (implementation notes of exp_4).
+    m = 2d + 1 in both cases.
     """
     def phi(z: np.ndarray) -> np.ndarray:
         z = np.atleast_2d(np.asarray(z, dtype=float))
