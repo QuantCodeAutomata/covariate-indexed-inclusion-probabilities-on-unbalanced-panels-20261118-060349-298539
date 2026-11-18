@@ -14,9 +14,10 @@ behaviour under independent versus determinantal-point-process inclusion
 (Section 6.1), pointwise confidence bands for the fitted curve under
 several long-run-variance estimators (Section 6.3), and a link-discrepancy
 diagnostic between the identity-link and log-link model classes
-(Section 6.4). Experiments 4-7 of the task (the US stock failure
-application, Sections 7.1-7.5, and the boundary-target confidence bands of
-Appendix C) are not implemented; see `results/RESULTS.md` → "Not
+(Section 6.4). The US stock failure application (Sections 7.1-7.5), its
+link-discrepancy diagnostic (Section 7.4), the simulation mimicking that
+application (Appendix C.3), and the boundary-target confidence bands of
+Appendix C.1 are not implemented; see `results/RESULTS.md` → "Not
 reproduced" for the reasons.
 
 ## Layout
