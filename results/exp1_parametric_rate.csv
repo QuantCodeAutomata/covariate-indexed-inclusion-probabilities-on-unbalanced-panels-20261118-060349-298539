@@ -1,0 +1,4 @@
+T,dgp,dict_m,sqrt_T_times_rmse
+250,independent,4,0.17301581872056587
+1000,independent,4,0.1516040679511724
+4000,independent,4,0.16866717585560229
