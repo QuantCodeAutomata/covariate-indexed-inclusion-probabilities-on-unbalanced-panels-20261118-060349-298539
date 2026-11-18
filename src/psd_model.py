@@ -78,7 +78,8 @@ def _log_link_pieces(Phi_t, incl_t, U):
     denom = np.clip(1.0 - w, EPS_FLOOR, None)
     weight_excl = w / denom  # coefficient of -C_i in the gradient contribution
     grad = Phi_incl.T @ Phi_incl - (Phi_excl * weight_excl[:, None]).T @ Phi_excl
-    loss = ell[incl_t].sum() - np.log(np.expm1(np.clip(ell_excl, EPS_FLOOR, 700.0))).sum()
+    # loss = sum_S ell_i - sum_{not S} log(1 - e^{-ell_i}) = sum_S ell_i - sum_{not S} log(denom)
+    loss = ell[incl_t].sum() - np.log(denom).sum()
     hess_w = weight_excl / denom  # weight for the Hessian, = e^{-ell}/(1-e^{-ell})^2
     return grad, loss, Phi_excl, hess_w
 
@@ -167,8 +168,9 @@ def fit(
                     if np.any(ell_excl <= 0):
                         ok = False
                         break
-                    ell_excl_c = np.clip(ell_excl, EPS_FLOOR, 700.0)
-                    cand_loss += ell[incl_t].sum() - np.log(np.expm1(ell_excl_c)).sum()
+                    w_c = np.exp(-np.clip(ell_excl, 0.0, 700.0))
+                    denom_c = np.clip(1.0 - w_c, EPS_FLOOR, None)
+                    cand_loss += ell[incl_t].sum() - np.log(denom_c).sum()
             if ok:
                 cand_loss = cand_loss / T + lam * np.trace(G @ candidate)
                 if cand_loss <= total_loss + 1e-4 * (cand_loss - total_loss) or cand_loss <= total_loss:

@@ -170,9 +170,9 @@ def _population_targets_dict5(p_o_fn_4, U_o4, n_pop: int, seed: int, m: int = 5)
 
 def main(full: bool = False) -> None:
     t0 = time.time()
-    n_reps = config.EXP3_N_REPS_PAPER if full else 3
-    n_reps_dpp = config.EXP3_N_REPS_DPP_PAPER if full else 2
-    n_reps_null = config.EXP3_N_REPS_NULL_PAPER if full else 4
+    n_reps = config.EXP3_N_REPS_PAPER if full else config.EXP3_N_REPS_RUN
+    n_reps_dpp = config.EXP3_N_REPS_DPP_PAPER if full else config.EXP3_N_REPS_DPP_RUN
+    n_reps_null = config.EXP3_N_REPS_NULL_PAPER if full else config.EXP3_N_REPS_NULL_RUN
     T = config.EXP3_T if full else 150
     n_pop = config.EXP3_POPULATION_PANEL_SIZE_PAPER if full else 800
     max_iter = 400 if full else 60
